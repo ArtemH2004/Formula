@@ -9,5 +9,6 @@
         public char Gender { get; set; }
         public string Job { get; set; }
         public int TeamId { get; set; }
+        public Team Team { get; set; }
     }
 }
