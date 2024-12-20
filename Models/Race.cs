@@ -12,5 +12,6 @@
         public string Weather { get; set; }
         public int TrackId { get; set; }
         public Track Track { get; set; }
+        public ICollection<Team> Teams { get; set; } = new List<Team>();
     }
 }

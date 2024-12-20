@@ -9,5 +9,6 @@
         public string Type {  get; set; }
         public int Percent { get; set; }
         public int TeamId { get; set; }
+        public Team Team { get; set; }
     }
 }
