@@ -46,6 +46,15 @@ namespace Formula.Controllers
                 TeamId = model.TeamId
             };
 
+            if (model.Photo != null && model.Photo.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.Photo.CopyToAsync(memoryStream);
+                    driver.Photo = memoryStream.ToArray();
+                }
+            }
+
             await _driverDbStorage.AddDriver(driver);
             return RedirectToAction(nameof(Index));
         }
@@ -93,6 +102,15 @@ namespace Formula.Controllers
             driver.Gender = model.Gender;
             driver.PodiumCount = model.PodiumCount;
             driver.TeamId = model.TeamId;
+
+            if (model.Photo != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.Photo.CopyToAsync(memoryStream);
+                    driver.Photo = memoryStream.ToArray();
+                }
+            }
 
             await _driverDbStorage.UpdateDriver(driver);
             return RedirectToAction(nameof(Index));

@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Фото</th>
             <th>Фамилия</th>
             <th>Имя</th>
             <th>Дата рождения</th>
@@ -21,7 +22,17 @@
         @foreach (var driver in Model)
         {
             <tr>
-                <td>@driver.DriverId</td>
+                    <td>@driver.DriverId</td>
+                <td>
+                @if (driver.Photo != null)
+                {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(driver.Photo)" alt="Фото водителя" style="width:35px; height:35px;" />
+                }
+                else
+                {
+                            <span>-</span>
+                }
+                </td>
                 <td>@driver.LastName</td>
                 <td>@driver.FirstName</td>
                 <td>@driver.Birthday.ToShortDateString()</td>

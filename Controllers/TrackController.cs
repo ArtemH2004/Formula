@@ -44,6 +44,15 @@ namespace Formula.Controllers
                 RaceId = model.RaceId
             };
 
+            if (model.Photo != null && model.Photo.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.Photo.CopyToAsync(memoryStream);
+                    track.Photo = memoryStream.ToArray();
+                }
+            }
+
             await _trackDbStorage.AddTrack(track);
             return RedirectToAction(nameof(Index));
         }
@@ -87,6 +96,15 @@ namespace Formula.Controllers
             track.Capacity = model.Capacity;
             track.Address = model.Address;
             track.RaceId = model.RaceId;
+
+            if (model.Photo != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.Photo.CopyToAsync(memoryStream);
+                    track.Photo = memoryStream.ToArray();
+                }
+            }
 
             await _trackDbStorage.UpdateTrack(track);
             return RedirectToAction(nameof(Index));

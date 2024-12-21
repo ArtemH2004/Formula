@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Formula.Models.Team>
 
-<h2>Список Команд</h2>
+<h2>Список команд</h2>
 
 <a asp-action="Create" class="btn btn-primary">Добавить команду</a>
 
@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Фото</th>
             <th>Название</th>
             <th>Страна</th>
             <th>ID Гонки</th>
@@ -19,6 +20,16 @@
         {
             <tr>
                 <td>@team.TeamId</td>
+                <td>
+                    @if (team.Photo != null)
+                    {
+                                    <img src="data:image/png;base64,@Convert.ToBase64String(team.Photo)" alt="Фото водителя" style="width:35px; height:35px;" />
+                    }
+                    else
+                    {
+                                    <span>-</span>
+                    }
+                </td>
                 <td>@team.Name</td>
                 <td>@team.Country</td>
                 <td>@team.RaceId</td>

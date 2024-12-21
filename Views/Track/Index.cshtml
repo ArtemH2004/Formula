@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Фото</th>
             <th>Тип</th>
             <th>Вместимость</th>
             <th>Адрес</th>
@@ -20,6 +21,16 @@
         {
             <tr>
                 <td>@track.TrackId</td>
+                <td>
+                    @if (track.Photo != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(track.Photo)" alt="Фото водителя" style="width:35px; height:35px;" />
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </td>
                 <td>@track.Type</td>
                 <td>@track.Capacity</td>
                 <td>@track.Address</td>
