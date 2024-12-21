@@ -1,0 +1,32 @@
+﻿@model Formula.Models.TrackViewModel
+
+<h2>@(Model.TrackId == 0 ? "Создать трассу" : "Редактировать трассу")</h2>
+
+<form asp-action="@(Model.TrackId == 0 ? "Create" : "Edit")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Type">Тип</label>
+        <input asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Capacity">Вместимость</label>
+        <input asp-for="Capacity" class="form-control" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address">Адрес</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RaceId">ID Гонки</label>
+        <input asp-for="RaceId" class="form-control" />
+        <span asp-validation-for="RaceId" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="TrackId" />
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+<a href="@Url.Action("Index")">Назад</a>
