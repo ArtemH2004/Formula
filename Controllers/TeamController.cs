@@ -43,6 +43,15 @@ namespace Formula.Controllers
                 RaceId = model.RaceId
             };
 
+            if (model.Photo != null && model.Photo.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.Photo.CopyToAsync(memoryStream);
+                    team.Photo = memoryStream.ToArray();
+                }
+            }
+
             await _teamDbStorage.AddTeam(team);
             return RedirectToAction(nameof(Index));
         }
@@ -84,6 +93,15 @@ namespace Formula.Controllers
             team.Name = model.Name;
             team.Country = model.Country;
             team.RaceId = model.RaceId;
+
+            if (model.Photo != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await model.Photo.CopyToAsync(memoryStream);
+                    team.Photo = memoryStream.ToArray();
+                }
+            }
 
             await _teamDbStorage.UpdateTeam(team);
             return RedirectToAction(nameof(Index));
