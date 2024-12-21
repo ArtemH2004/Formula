@@ -1,0 +1,42 @@
+﻿@model Formula.Models.ManagerViewModel
+
+<h2>@(Model.ManagerId == 0 ? "Создать руководителя" : "Редактировать руководителя")</h2>
+
+<form asp-action="@(Model.ManagerId == 0 ? "Create" : "Edit")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="LastName">Фамилия</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName">Имя</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MiddleName">Отчество</label>
+        <input asp-for="MiddleName" class="form-control" />
+        <span asp-validation-for="MiddleName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type">Должность</label>
+        <input asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Percent">Процент</label>
+        <input asp-for="Percent" class="form-control" />
+        <span asp-validation-for="Percent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TeamId">ID Команды</label>
+        <input asp-for="TeamId" class="form-control" />
+        <span asp-validation-for="TeamId" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="ManagerId" />
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+<a href="@Url.Action("Index")">Назад</a>

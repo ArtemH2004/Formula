@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Formula.Models.Driver>
+
+<h2>Список водителей</h2>
+
+<a asp-action="Create" class="btn btn-primary">Добавить водителя</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Дата рождения</th>
+            <th>Пол</th>
+            <th>Количество подиумов</th>
+            <th>ID Команды</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var driver in Model)
+        {
+            <tr>
+                <td>@driver.DriverId</td>
+                <td>@driver.LastName</td>
+                <td>@driver.FirstName</td>
+                <td>@driver.Birthday.ToShortDateString()</td>
+                <td>@driver.Gender</td>
+                <td>@driver.PodiumCount</td>
+                <td>@driver.TeamId</td>
+                <td>
+                    <form asp-action="Edit" asp-route-id="@driver.DriverId" method="get" style="display:inline;">
+                        <button type="submit" class="btn btn-warning">Редактировать</button>
+                    </form>
+                    <form asp-action="Delete" asp-route-id="@driver.DriverId" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

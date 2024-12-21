@@ -1,0 +1,27 @@
+﻿@model Formula.Models.TeamViewModel
+
+<h2>@(Model.TeamId == 0 ? "Создать команду" : "Редактировать команду")</h2>
+
+<form asp-action="@(Model.TeamId == 0 ? "Create" : "Edit")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name">Название</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Country">Страна</label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RaceId">ID Гонки</label>
+        <input asp-for="RaceId" class="form-control" />
+        <span asp-validation-for="RaceId" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="TeamId" />
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+<a href="@Url.Action("Index")">Назад</a>

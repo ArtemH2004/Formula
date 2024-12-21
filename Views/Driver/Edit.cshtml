@@ -1,0 +1,45 @@
+﻿@model Formula.Models.DriverViewModel
+
+<h2>@(Model.DriverId == 0 ? "Создать водителя" : "Редактировать водителя")</h2>
+
+<form asp-action="@(Model.DriverId == 0 ? "Create" : "Edit")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="LastName">Фамилия</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName">Имя</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Birthday">Дата рождения</label>
+        <input asp-for="Birthday" class="form-control" type="date" />
+        <span asp-validation-for="Birthday" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender">Пол</label>
+        <select asp-for="Gender" class="form-control">
+            <option value="M">Мужчина</option>
+            <option value="F">Женщина</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PodiumCount">Количество подиумов</label>
+        <input asp-for="PodiumCount" class="form-control" />
+        <span asp-validation-for="PodiumCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TeamId">ID Команды</label>
+        <input asp-for="TeamId" class="form-control" />
+        <span asp-validation-for="TeamId" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="DriverId" />
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+<a href="@Url.Action("Index")">Назад</a>
